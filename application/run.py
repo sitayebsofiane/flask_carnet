@@ -1,21 +1,18 @@
 from flask import Flask,render_template,abort
-from flask_sqlalchemy import SQLAlchemy
+from entitie.entities import Create_entities
 import datetime
-app = Flask(__name__)
-#----------------------------------------------------------conect to bdd-------------------------------------------
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:as122014@localhost:5432/flask'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
-#---------------------------------------------------------controllers----------------------------------------------
+app = Flask(__name__)
+
+entitie = Create_entities()
+entitie.create_user()
 
 @app.route('/')
 def home():
-
     return render_template('pages/index.html')
+
 @app.route('/notes')
 def notes():
-    
     return render_template('pages/notes.html')
       
 # #<id> c'est un parametre qui va etre reçu par la fonction
@@ -52,5 +49,5 @@ def page_not_found(error):
     return render_template('errors/404.html'), 404
 
 if __name__ == '__main__':
-    db.create_all()
+    entitie.db.create_all()
     app.run(debug = True,host = '0.0.0.0',port = '5001')
