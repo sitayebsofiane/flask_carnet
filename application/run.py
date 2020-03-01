@@ -1,11 +1,11 @@
 from flask import Flask,render_template,abort
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 import datetime
 app = Flask(__name__)
 #----------------------------------------------------------conect to bdd-------------------------------------------
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:as122014@localhost:5432/flask'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:as122014@localhost:5432/flask'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 #---------------------------------------------------------controllers----------------------------------------------
 
@@ -52,5 +52,5 @@ def page_not_found(error):
     return render_template('errors/404.html'), 404
 
 if __name__ == '__main__':
-    #db.create_all()
+    db.create_all()
     app.run(debug = True,host = '0.0.0.0',port = '5001')
