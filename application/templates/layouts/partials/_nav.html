@@ -1,0 +1,42 @@
+
+<div class="container-fluid">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img src="https://zupimages.net/up/20/09/lwew.jpg">
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-2">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{url_for('service')}}">Services</a></li>
+            <li><a href="{{url_for('cv')}}">CV</a></li>
+            <li><a href="{{url_for('motivation')}}">Motivation</a></li>
+            <li><a href="#">Contact me</a></li>
+            <li>
+              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">
+                  voir mon portfolio</a>
+            </li>
+          </ul>
+          <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
+            <form class="navbar-form navbar-right form-inline" role="form">
+              <div class="form-group">
+                <label class="sr-only" for="nom">Nom d'Entreprise</label>
+                <input type="text" class="form-control" id="nom" placeholder="nom de votre entreprise" autofocus required />
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="nom_poste">Password</label>
+                <input type="text" class="form-control" id="nom_poste" placeholder="poste que vous rechercher" required />
+              </div>
+              <button type="submit" class="btn btn-success">Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+</div>

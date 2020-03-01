@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% include 'layouts/partials/_mon_style.html' %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+</head>
+<body>
+    {% include 'layouts/partials/_nav.html' %}
+    {% block body %}{% endblock body %}
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    {% include 'layouts/partials/_mon_script.html' %}
+    {% include 'layouts/partials/_footer.html' %}
+</body>
+</html>

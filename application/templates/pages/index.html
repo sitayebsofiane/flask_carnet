@@ -1,0 +1,12 @@
+{% extends 'layouts/default.html' %}
+   
+{% block body %}
+    {#{{bruno}}#}
+    {{tout}}
+    <h1>Blog({{ nom_dans_vue(bruno|length ,'post')}} )</h1>
+    <p  class="hidden"> {{bruno|join(' bruno ')}}</p>
+    {% for post in bruno %}
+        <h2>{{post.id}}- <a href="{{ url_for('posts_show', id=post.id) }}">{{ post.title|upper }} </a></h2>
+        <p>{{ post.content }} </p>
+    {% endfor %}
+{% endblock body %}
