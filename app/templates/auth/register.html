@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block navitems %}
+    <li><a href="{{ url_for('index') }}">Home</a></li> /
+{% endblock navitems %}
+
+{% block content %}
+    <div class='row pt-3'>
+        <div class='col-md-6 offset-md-3 card'>
+            <div class='card-header text-center mt-2 bg-success text-light'>
+                <h5 class='font-weight-bold'>Registration Form</h5></div>
+            <div class='card-body'>
+                <div class='alert alert-info p-1 pl-2'>
+                    {% if not get_flashed_messages() %}
+                        All fields are required.
+                    {% else %}
+                        {{ get_flashed_messages()[0]|safe }}
+                    {% endif %}
+                </div>
+                <form method='POST' action="{{ url_for('auth.register') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type='text' name='email' class='form-control mb-2'
+                        placeholder='Email'
+                        onblur='this.placeholder="Email"'
+                        onfocus='this.placeholder=""'>
+                    <input type='password' name='password' class='form-control mb-2'
+                        placeholder='Password'
+                        onblur='this.placeholder="Password"'
+                        onfocus='this.placeholder=""'>
+                    <input type='password' name='re-password' class='form-control mb-2'
+                        placeholder='Re-password'
+                        onblur='this.placeholder="Re-password"'
+                        onfocus='this.placeholder=""'>
+                    
+                    <div class='text-right mt-3'><button type='submit' name='submit' 
+                        class='btn btn-sm btn-success mb-2'>Register</button></div>
+                </form>
+            </div>
+            <div class='card-footer text-center'>
+                Already memeber? <a href="{{ url_for('auth.login') }}">Login here</a></div>
+        </div>
+    </div>
+{% endblock content %}

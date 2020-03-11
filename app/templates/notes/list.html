@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block navitems %}
+    <li><a href='{{ url_for("index") }}'>Home</a></li> /
+    <li class='text-secondary'> &nbsp;Notes</li> / 
+{% endblock navitems %}
+
+{% block content %}
+    <style>
+        a, a:hover {color: black; text-decoration: none; font-size: 16px; font-weight: normal}
+    </style>
+    <div class='col-md-8 offset-md-2'>
+        <h3 class='mt-4'>Notes</h3><hr>
+        <table class='table text-center text-light mt-3 bg-light text-dark'>
+            <tbody>
+                {% if notes %}
+                    {% for note in notes %}                   
+                        <tr>
+                            <td>{{loop.index}}</td>
+                            <td>
+                                <a style='text-decoration: underline' 
+                                    href='{{note.get_absolute_url}}'>{{note.title}}</a></td>
+                            <td><span class='text-secondary'>{{note.created_at|timesince}}</span></td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <h4 class='mt-5 text-center text-warning'>No notes found!</h4>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

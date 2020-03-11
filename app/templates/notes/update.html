@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block navitems %}
+    <li><a href="{{ url_for('index') }}">Home</a></li> /
+    <li><a href='{{ url_for("notes.list") }}'>&nbsp;Notes</a></li> /
+    <li><a href='{{ url_for("notes.detail", id=note.id)  }}'>&nbsp;{{note.title}}</a></li> /
+    <li class='text-secondary'>&nbsp;Update</li> / 
+{% endblock navitems %}
+
+{% block content %}
+<div class='col-md-6 offset-md-3'>
+    <div  class='card mt-5' style="height: 420px">
+        <div class='card-header text-center bg-dark text-light'>
+            <h4>Update Note</h4></div>
+        <div class='card-body'>
+            <div class='alert alert-info p-1 pl-2'>
+                {% if not message %}
+                    Update your title, content
+                {% else %}
+                    {{message}}
+                {% endif %}
+            </div>
+            <form method='POST' action="{{ url_for('notes.update', id=note.id)  }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <input type='text' name='title' class='form-control mb-2'
+                    placeholder='Note title'
+                    onblur='this.placeholder="Note title"'
+                    onfocus='this.placeholder=""'
+                    value='{{note.title}}'>
+                <textarea name='content' class='form-control mb-2'
+                    style='height: 180px'
+                    placeholder='Your note here'
+                    onblur='this.placeholder="Your note here"'
+                    onfocus='this.placeholder=""'>{{note.content}}</textarea>
+                <button type='submit' name='submit' 
+                    class='btn btn-sm btn-dark mb-2'>Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

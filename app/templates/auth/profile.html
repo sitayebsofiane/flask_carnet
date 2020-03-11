@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block navitems %}
+    <li><a href="{{ url_for('index') }}">Home</a></li> /
+{% endblock navitems %}
+
+{% block content %}
+    <div class='col-md-8 offset-md-2'>
+    {% if get_flashed_messages() %}
+        <div class='alert alert-info p-1 pl-2 col-md-6 offset-sm-3 '>
+            {{ get_flashed_messages()[0]|safe }}</div>
+    {% endif %}
+    </div>
+    <div class='col-md-6 mt-5 offset-md-3'>
+        <div class='card'>
+            <div class='card-body'>
+                <div class='text-center'><img class='img-fluid rounded-circle' height="100" width='100' 
+                        src="{{ url_for('static', filename='icon.png') }} "></div>
+                <h2 class='text-center mt-2'>{{user.username}}</h2>
+                <hr>
+                <table class='table table-bordered'>
+                    <tr>
+                        <th>Notes</th>
+                        <td>{{note_counter}}</td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <th>E-mail</th>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Created on</th>
+                        <td>{{user.created_at}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class='card-footer text-center text-success'>
+                Last updated on: {{user.updated_at|timesince}}</div>
+        </div>
+    </div>
+{% endblock content %}

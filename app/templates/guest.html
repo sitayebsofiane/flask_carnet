@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+
+{% block navitems %}
+    <li><a href="{{ url_for('index') }}">Home</a></li> /
+    <li><a href='{{ url_for("notes.list") }}'>&nbsp;Notes</a></li> /
+{% endblock navitems %}
+
+{% block content %}
+    {% if get_flashed_messages() %}
+        <div class='alert alert-info p-1 pl-2 col-md-6 offset-sm-3 '>
+            {{ get_flashed_messages()[0]|safe }}</div>
+    {% endif %}
+    <div class='mt-4 row'>
+        <div class='col-md-4 mb-5'>
+            <div class='card'>
+                <h4 class='card-header text-center'>Hello, Guest!</h4>
+                <div class='card-body text-justify'>
+                    <span class='alert-link'>Welcome</span> to FLASK-NOTEBOOK.
+                    You can store your valuable notes here for free.
+                    To use this service <a href="{{url_for('auth.register')}}">register</a>
+                    here.
+                </div>
+            </div>
+        </div>
+        <div class='col-md-6'>
+            <h4 class='text-center mb-0 p-3 bg-dark text-light'>
+                About the service</h4>
+            <div class="list-group">
+                <div class="list-group-item">
+                    Your notes are always private.
+                </div>
+                <div class="list-group-item">
+                    Only you can view/edit/delete your notes.
+                </div>
+                <div class="list-group-item">
+                    You have to be a memeber to use the service.
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

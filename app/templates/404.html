@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+
+{% block navitems %}
+    <li><a href="{{ url_for('index') }}">Goto home</a></li> /
+{% endblock navitems %}
+
+{% block content %}
+    <div class='text-center text-light font-weight-bold'
+        style='font-size: 30px; margin-top: 120px'>
+        404 Not Found!
+    </div>
+{% endblock content %}

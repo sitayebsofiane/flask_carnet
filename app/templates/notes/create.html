@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% block navitems %}
+    <li><a href="{{ url_for('index') }}">Home</a></li> /
+    <li><a href='{{ url_for("notes.list") }}'>&nbsp;Notes</a></li> /
+    <li class='text-secondary'>&nbsp;Create</li> / 
+{% endblock navitems %}
+
+{% block content %}
+    <div class='row pt-3'>
+        <div class='col-md-6 card' style="height: 420px">
+            <div class='card-header text-center mt-2 bg-dark text-light'>
+                <h5>Create New Note</h5></div>
+            <div class='card-body'>
+                <div class='alert alert-info p-1 pl-2'>
+                    {% if not message %}
+                        Both fields are required
+                    {% else %}
+                        {{message}}
+                    {% endif %}
+                </div>
+                <form method='POST' action="{{ url_for('notes.create') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type='text' name='title' class='form-control mb-2'
+                        placeholder='Note title'
+                        onblur='this.placeholder="Note title"'
+                        onfocus='this.placeholder=""'>
+                    <textarea name='content' class='form-control mb-2'
+                        style='height: 180px'
+                        placeholder='Your note here'
+                        onblur='this.placeholder="Your note here"'
+                        onfocus='this.placeholder=""'></textarea>
+                    <button type='submit' name='submit' 
+                        class='btn btn-sm btn-dark mb-2'>Save</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class='col-md-6'>
+            <h4 class='text-center p-2 mb-0 bg-dark text-light'>Latest 5 notes</h4>
+            <div class="list-group">
+                {% if notes %}
+                    {% for note in notes %}
+                        <div class="list-group-item">
+                            <strong>#{{loop.index}}</strong>
+                            <a class='mr-3 ml-2' href="{{note.get_absolute_url}}">
+                                {{note.title}}</a>
+                            <span class='text-right text-secondary font-italic'>{{note.created_at|timesince}}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class='alert alert-danger text-center'>No notes found!</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

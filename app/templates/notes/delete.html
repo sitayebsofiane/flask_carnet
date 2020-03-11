@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block navitems %}
+    <li><a href="{{ url_for('index') }}">Home</a></li> /
+    <li><a href='{{ url_for("notes.list") }}'>&nbsp;Notes</a></li> /
+    <li><a href='{{ url_for("notes.detail", id=note.id)  }}'>&nbsp;{{note.title}}</a></li> /
+    <li class='text-secondary'>&nbsp;Delete</li> / 
+{% endblock navitems %}
+
+{% block content %}
+    <div class='text-center' style='margin-top: 120px'>
+        <h4>Are you sure you want to delete?</h4>
+        <form method='POST' action='{{ url_for("notes.delete", id=note.id) }}'>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class='button-group'>
+                <input type='hidden' value='1' name='delete'>
+                <button type='submit' class='col-1 mb-2 mt-2 btn btn-sm btn-danger'>Yes</button>
+            </div>
+        </form>
+        <form method='POST' action='{{ url_for("notes.delete", id=note.id) }}'>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class='button-group'>
+                <input type='hidden' value='0' name='delete'>
+                <button class='col-1 btn btn-sm btn-success'>No</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

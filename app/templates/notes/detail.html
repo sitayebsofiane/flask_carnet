@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block navitems %}
+    <li><a href="{{ url_for('index') }}">Home</a></li> /
+    <li><a href='{{ url_for("notes.list") }}'>&nbsp;Notes</a></li> /
+    <li class='text-secondary'>&nbsp;{{note.title}}</li> / 
+{% endblock navitems %}
+
+{% block content %}
+    <div class="col-md-8 offset-md-2 ">
+        <div class='card mt-5 bg-light text-dark'>
+            <h4 class='card-header'>{{note.title}}
+                <small class='text-secondary' style='font-size: 14px'>
+                    &nbsp;&nbsp;- by <b>{{ note.get_owner }}</b></small></h4>
+            <div class='card-body' style='min-height:200px'>{{note.content}}</div>
+            <div class='card-footer text-center'>
+                {{note.created_at}} &nbsp;|
+                <a class='text-success' href='{{note.get_update_url}}'>Edit</a>&nbsp;|
+                <a class='text-danger' href='{{note.get_delete_url}}'>Delete</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
